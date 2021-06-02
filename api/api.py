@@ -2,6 +2,7 @@ import json
 from http.server import BaseHTTPRequestHandler
 import socket
 import struct
+import os
 
 
 class CzIp:
@@ -186,6 +187,7 @@ class CzIp:
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+        print(os.listdir())
         cz_ip = CzIp()
         request = self.request
         if request.method == 'GET':
