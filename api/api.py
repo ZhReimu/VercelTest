@@ -187,14 +187,16 @@ class CzIp:
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        # print(os.listdir())
         cz_ip = CzIp()
-        request = self.request
-        if request.method == 'GET':
-            try:
-                ip = request.args['ip']
-            except KeyError:
-                ip = request.remote_addr
-            return json.loads(json.dumps(
+        self.send_response(200)
+        self.end_headers()
+        
+        query = parse.urlparse(self.path).query
+        if "ip" == query[:2]:
+          ip = query[3:]
+        else:
+          ip = self.client_address[0]
+        
+        self.wfile.write(json.loads(json.dumps(
                 "{'code': '200',"f"'db_info': f'{cz_ip.get_version()} 当前一共有 {cz_ip.index_count} 条记录'," "'data': {'ip': "f"{ip}," f"'city': {cz_ip.get_addr_by_ip(ip)}" "} "
-            ))
+            )))
