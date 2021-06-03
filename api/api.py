@@ -2,11 +2,11 @@ import json
 from http.server import BaseHTTPRequestHandler
 import socket
 import struct
-import os
+# import os
 
 
 class CzIp:
-    def __init__(self, db_file='./ip.dat'):
+    def __init__(self, db_file='./api/ip.dat'):
         self.f_db = open(db_file, "rb")
         bs = self.f_db.read(8)
         (self.first_index, self.last_index) = struct.unpack('II', bs)
@@ -187,7 +187,7 @@ class CzIp:
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        print(os.listdir())
+        # print(os.listdir())
         cz_ip = CzIp()
         request = self.request
         if request.method == 'GET':
