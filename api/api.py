@@ -18,8 +18,9 @@ class handler(BaseHTTPRequestHandler):
             ip = self.client_address[0]
         code = 200
         db_info = f'{cz_ip.get_version()} 当前一共有 {cz_ip.index_count} 条记录'
-        data = str({'ip': ip, 'city': cz_ip.get_addr_by_ip(ip)})
+        data = str({"ip": ip, "city": cz_ip.get_addr_by_ip(ip)})
 
-        self.wfile.write(json.loads(json.dumps(
-            '{' + f'code: {code},\'db_info:{db_info},\'data\':{data} ' + '}'
-        )).encode('utf-8'))
+        self.wfile.write(
+            ('{' + f' "code": "{code}",'
+                   f'"db_info":"{db_info}",'
+                   f'"data":{data} ' + '}').encode('utf-8'))
