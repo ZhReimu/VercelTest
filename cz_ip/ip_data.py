@@ -1,11 +1,9 @@
 import socket
 import struct
-import os
 
 
 class CzIp:
-    def __init__(self, db_file='./cx_ip/ip.dat'):
-        print(os.listdir())
+    def __init__(self, db_file='./cz_ip/ip.dat'):
         self.f_db = open(db_file, "rb")
         bs = self.f_db.read(8)
         (self.first_index, self.last_index) = struct.unpack('II', bs)
