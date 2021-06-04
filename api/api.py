@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib import parse
 import json
 
-from api.ip_data import CzIp
+from cz_ip.ip_data import CzIp
 
 
 class handler(BaseHTTPRequestHandler):

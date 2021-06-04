@@ -3,7 +3,7 @@ import struct
 
 
 class CzIp:
-    def __init__(self, db_file='./api/ip.dat'):
+    def __init__(self, db_file='./ip.dat'):
         self.f_db = open(db_file, "rb")
         bs = self.f_db.read(8)
         (self.first_index, self.last_index) = struct.unpack('II', bs)
